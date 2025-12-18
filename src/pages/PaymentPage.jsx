@@ -6,15 +6,36 @@ const PaymentPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Get plan details from navigation state or use defaults
-  const plan = location.state?.plan || {
-    name: 'Jio Prime',
-    price: '₹299',
-    validity: '28 days',
-    data: '2GB/day'
+  // Get service details from navigation state
+  const serviceType = location.state?.serviceType || 'mobile';
+  const provider = location.state?.provider || 'jio';
+  const amount = location.state?.amount || '299';
+  const plan = location.state?.plan;
+  const subscriberId = location.state?.subscriberId || location.state?.number;
+  const consumerNumber = location.state?.consumerNumber;
+  
+  // Service type labels
+  const serviceLabels = {
+    mobile: 'Mobile Recharge',
+    tv: 'TV Recharge', 
+    dth: 'DTH Recharge',
+    electricity: 'Electricity Bill Payment'
   };
   
-  const operator = location.state?.operator || 'Jio';
+  // Provider names
+  const providerNames = {
+    jio: 'Jio',
+    airtel: 'Airtel',
+    bsnl: 'BSNL',
+    tatasky: 'Tata Sky',
+    dishtv: 'Dish TV',
+    sundirect: 'Sun Direct',
+    videocon: 'Videocon D2H',
+    bescom: 'BESCOM',
+    tsnpdcl: 'TSNPDCL',
+    msedcl: 'MSEDCL',
+    adani: 'Adani Electricity'
+  };
 
   const [formData, setFormData] = useState({
     mobileNumber: '',
@@ -90,10 +111,13 @@ const PaymentPage = () => {
       // Success - navigate to confirmation
       navigate('/confirmation', {
         state: {
+          serviceType,
+          provider: providerNames[provider] || provider,
           plan,
-          operator,
+          subscriberId,
+          consumerNumber,
           mobileNumber: formData.mobileNumber,
-          amount: plan.price
+          amount: `₹${amount}`
         }
       });
     } catch (err) {
@@ -124,25 +148,47 @@ const PaymentPage = () => {
             <h3>Order Summary</h3>
             <div className="summary-details">
               <div className="summary-row">
-                <span>Operator:</span>
-                <span>{operator}</span>
+                <span>Service:</span>
+                <span>{serviceLabels[serviceType]}</span>
               </div>
               <div className="summary-row">
-                <span>Plan:</span>
-                <span>{plan.name}</span>
+                <span>Provider:</span>
+                <span>{providerNames[provider] || provider}</span>
               </div>
-              <div className="summary-row">
-                <span>Validity:</span>
-                <span>{plan.validity}</span>
-              </div>
-              <div className="summary-row">
-                <span>Data:</span>
-                <span>{plan.data}</span>
-              </div>
+              {plan && (
+                <>
+                  <div className="summary-row">
+                    <span>Plan:</span>
+                    <span>{plan.name}</span>
+                  </div>
+                  <div className="summary-row">
+                    <span>Validity:</span>
+                    <span>{plan.validity}</span>
+                  </div>
+                  {plan.data && (
+                    <div className="summary-row">
+                      <span>Data:</span>
+                      <span>{plan.data}</span>
+                    </div>
+                  )}
+                </>
+              )}
+              {subscriberId && (
+                <div className="summary-row">
+                  <span>Subscriber ID:</span>
+                  <span>{subscriberId}</span>
+                </div>
+              )}
+              {consumerNumber && (
+                <div className="summary-row">
+                  <span>Consumer Number:</span>
+                  <span>{consumerNumber}</span>
+                </div>
+              )}
               <div className="summary-divider"></div>
               <div className="summary-total">
                 <span>Total Amount:</span>
-                <span className="amount">{plan.price}</span>
+                <span className="amount">₹{amount}</span>
               </div>
             </div>
           </div>
@@ -156,9 +202,11 @@ const PaymentPage = () => {
                 </div>
               )}
 
-              {/* Mobile Number */}
+              {/* Contact Number */}
               <div className="form-group">
-                <label htmlFor="mobileNumber">Mobile Number</label>
+                <label htmlFor="mobileNumber">
+                  {serviceType === 'mobile' ? 'Mobile Number' : 'Contact Number'}
+                </label>
                 <div className="input-with-prefix">
                   <span className="prefix">+91</span>
                   <input
@@ -167,7 +215,7 @@ const PaymentPage = () => {
                     name="mobileNumber"
                     value={formData.mobileNumber}
                     onChange={handleChange}
-                    placeholder="Enter 10-digit mobile number"
+                    placeholder="Enter 10-digit number"
                     maxLength="10"
                     required
                     disabled={loading}
@@ -291,7 +339,7 @@ const PaymentPage = () => {
                       Processing...
                     </>
                   ) : (
-                    `Pay ${plan.price}`
+                    `Pay ₹${amount}`
                   )}
                 </button>
               </div>

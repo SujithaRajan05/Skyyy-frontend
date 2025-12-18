@@ -84,25 +84,49 @@
   backdrop-filter: blur(10px);
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .hero-button {
   display: inline-block;
-  background: #a8d8ea;
-  color: #2d3748;
-  padding: 18px 50px;
+  padding: 18px 40px;
   border-radius: 50px;
   font-size: 1.2rem;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(168, 216, 234, 0.4);
   border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
-.hero-button:hover {
+.hero-button.primary {
+  background: #a8d8ea;
+  color: #2d3748;
+  box-shadow: 0 10px 30px rgba(168, 216, 234, 0.4);
+}
+
+.hero-button.primary:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(168, 216, 234, 0.6);
   background: #b8e2f0;
   border-color: #a8d8ea;
+}
+
+.hero-button.secondary {
+  background: transparent;
+  color: #2d3748;
+  border-color: #a8d8ea;
+  box-shadow: 0 10px 30px rgba(168, 216, 234, 0.2);
+}
+
+.hero-button.secondary:hover {
+  transform: translateY(-5px);
+  background: rgba(168, 216, 234, 0.1);
+  box-shadow: 0 20px 40px rgba(168, 216, 234, 0.4);
+  border-color: #667eea;
 }
 
 /* SECTION HEADING */
@@ -148,6 +172,9 @@
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .service-item:hover {

@@ -7,11 +7,27 @@ const ConfirmationPage = () => {
   const navigate = useNavigate();
   const [transactionId, setTransactionId] = useState('');
   
-  const { plan, operator, mobileNumber, amount } = location.state || {};
+  const { 
+    serviceType, 
+    provider, 
+    plan, 
+    subscriberId, 
+    consumerNumber, 
+    mobileNumber, 
+    amount 
+  } = location.state || {};
+
+  // Service type labels
+  const serviceLabels = {
+    mobile: 'Mobile Recharge',
+    tv: 'TV Recharge',
+    dth: 'DTH Recharge', 
+    electricity: 'Electricity Bill Payment'
+  };
 
   useEffect(() => {
     // If no data, redirect to home
-    if (!plan || !amount) {
+    if (!amount) {
       navigate('/');
     }
     
@@ -32,23 +48,43 @@ const ConfirmationPage = () => {
         
         <h1>Payment Successful!</h1>
         <p className="success-message">
-          Your recharge has been completed successfully
+          Your {serviceLabels[serviceType] || 'recharge'} has been completed successfully
         </p>
         
         <div className="confirmation-details">
           <div className="detail-card">
             <div className="detail-row">
-              <span>Mobile Number:</span>
-              <span>+91 {mobileNumber || 'XXXXXXXXXX'}</span>
+              <span>Service:</span>
+              <span>{serviceLabels[serviceType] || 'Mobile Recharge'}</span>
             </div>
             <div className="detail-row">
-              <span>Operator:</span>
-              <span>{operator || 'Jio'}</span>
+              <span>Provider:</span>
+              <span>{provider || 'Jio'}</span>
             </div>
-            <div className="detail-row">
-              <span>Plan:</span>
-              <span>{plan?.name || 'Jio Prime'}</span>
-            </div>
+            {mobileNumber && (
+              <div className="detail-row">
+                <span>Mobile Number:</span>
+                <span>+91 {mobileNumber}</span>
+              </div>
+            )}
+            {subscriberId && (
+              <div className="detail-row">
+                <span>Subscriber ID:</span>
+                <span>{subscriberId}</span>
+              </div>
+            )}
+            {consumerNumber && (
+              <div className="detail-row">
+                <span>Consumer Number:</span>
+                <span>{consumerNumber}</span>
+              </div>
+            )}
+            {plan && (
+              <div className="detail-row">
+                <span>Plan:</span>
+                <span>{plan.name}</span>
+              </div>
+            )}
             <div className="detail-row">
               <span>Amount Paid:</span>
               <span className="amount">{amount || '₹299'}</span>

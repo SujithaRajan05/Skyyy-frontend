@@ -29,9 +29,14 @@ const Home = () => {
           <p className="hero-description">
             Recharge made simple. Fast, secure, and hassle-free mobile recharges at your fingertips.
           </p>
-          <Link to="/recharge" className="hero-button">
-            Start Recharge
-          </Link>
+          <div className="hero-buttons">
+            <Link to="/recharge" className="hero-button primary">
+              Start Recharge
+            </Link>
+            <Link to="/offers" className="hero-button secondary">
+              View Offers
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -40,30 +45,30 @@ const Home = () => {
         <div className="container">
           <h2 className="section-heading">Choose Your Service</h2>
           <div className="services-grid">
-            <div className="service-item">
+            <Link to="/mobile-recharge" className="service-item">
               <div className="service-icon">
                 <FaMobileAlt />
               </div>
               <h3>Mobile Recharge</h3>
-            </div>
-            <div className="service-item">
+            </Link>
+            <Link to="/tv-recharge" className="service-item">
               <div className="service-icon">
                 <FaTv />
               </div>
               <h3>TV Recharge</h3>
-            </div>
-            <div className="service-item">
+            </Link>
+            <Link to="/dth-recharge" className="service-item">
               <div className="service-icon">
                 <FaSatelliteDish />
               </div>
               <h3>DTH Recharge</h3>
-            </div>
-            <div className="service-item">
+            </Link>
+            <Link to="/electricity-bill" className="service-item">
               <div className="service-icon">
                 <FaBolt />
               </div>
               <h3>Electricity Bill</h3>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

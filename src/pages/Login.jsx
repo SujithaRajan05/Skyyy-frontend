@@ -45,32 +45,23 @@ const Login = () => {
         return;
       }
 
-      try {
-        // Try backend first
-        const response = await fetch('http://localhost:5000/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: formData.email, password: formData.password })
-        });
-
-        const data = await response.json();
-        if (data.success) {
-          localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('userEmail', data.user.email);
-          localStorage.setItem('userName', data.user.email.split('@')[0]);
-          alert('Login successful! Saved to MongoDB.');
-          navigate('/home');
-          return;
-        }
-      } catch (err) {
-        console.log('Backend not running, using offline mode');
+      // Check for admin credentials
+      if (formData.email === 'admin@skyrecharge.com' && formData.password === 'admin123') {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', 'admin@skyrecharge.com');
+        localStorage.setItem('userName', 'Admin');
+        localStorage.setItem('userRole', 'admin');
+        alert('Admin login successful!');
+        navigate('/admin/dashboard');
+        return;
       }
 
-      // Offline fallback
+      // Regular user login (offline mode)
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userEmail', formData.email);
       localStorage.setItem('userName', formData.email.split('@')[0]);
-      alert('Login successful! (Offline - start backend for MongoDB)');
+      localStorage.setItem('userRole', 'user');
+      alert('Login successful!');
       navigate('/home');
     } catch (err) {
       setError('Login failed. Please try again.');
@@ -84,7 +75,7 @@ const Login = () => {
   const handleDemoLogin = (type) => {
     if (type === 'admin') {
       setFormData({
-        email: 'admin@skyrecharge.in',
+        email: 'admin@skyrecharge.com',
         password: 'admin123'
       });
     } else {

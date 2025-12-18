@@ -1,5 +1,8 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import JioLogo from '../assets/Jio.png';
+import AirtelLogo from '../assets/Airtel.png';
+import BsnlLogo from '../assets/bsnl.png';
 import './Plans.css';
 
 const Plans = () => {
@@ -35,13 +38,13 @@ const Plans = () => {
   const getOperatorDetails = () => {
     switch(operator?.toLowerCase()) {
       case 'jio':
-        return { name: 'Jio', logo: 'J', color: '#FF6B6B', bgColor: '#FFF5F5' };
+        return { name: 'Jio', logo: JioLogo, color: '#FF6B6B', bgColor: '#FFF5F5' };
       case 'airtel':
-        return { name: 'Airtel', logo: 'A', color: '#4ECDC4', bgColor: '#F0F9F8' };
+        return { name: 'Airtel', logo: AirtelLogo, color: '#4ECDC4', bgColor: '#F0F9F8' };
       case 'bsnl':
-        return { name: 'BSNL', logo: 'B', color: '#45B7D1', bgColor: '#F0F9FF' };
+        return { name: 'BSNL', logo: BsnlLogo, color: '#45B7D1', bgColor: '#F0F9FF' };
       default:
-        return { name: 'Jio', logo: 'J', color: '#FF6B6B', bgColor: '#FFF5F5' };
+        return { name: 'Jio', logo: JioLogo, color: '#FF6B6B', bgColor: '#FFF5F5' };
     }
   };
 
@@ -71,11 +74,10 @@ const Plans = () => {
           <div 
             className="operator-logo-large"
             style={{ 
-              backgroundColor: operatorDetails.bgColor,
-              color: operatorDetails.color
+              backgroundColor: operatorDetails.bgColor
             }}
           >
-            {operatorDetails.logo}
+            <img src={operatorDetails.logo} alt={operatorDetails.name} className="operator-logo-img" />
           </div>
           <div>
             <h1>{operatorDetails.name} Recharge Plans</h1>
@@ -121,6 +123,27 @@ const Plans = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="offers-section">
+        <h3>Special Offers</h3>
+        <div className="offers-grid">
+          <div className="offer-card netflix">
+            <div className="offer-icon">🎬</div>
+            <h4>Netflix Free</h4>
+            <p>Get 3 months Netflix free with ₹599+ recharge</p>
+          </div>
+          <div className="offer-card hotstar">
+            <div className="offer-icon">🏏</div>
+            <h4>Hotstar Premium</h4>
+            <p>Free Hotstar Premium with ₹399+ recharge</p>
+          </div>
+          <div className="offer-card prime">
+            <div className="offer-icon">📦</div>
+            <h4>Amazon Prime</h4>
+            <p>Get Amazon Prime membership with ₹799+ recharge</p>
+          </div>
+        </div>
       </div>
 
       <div className="support-section">

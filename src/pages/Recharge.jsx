@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Recharge.css';
-
-// Import the PNG logos
 import JioLogo from '../assets/Jio.png';
 import AirtelLogo from '../assets/Airtel.png';
 import BsnlLogo from '../assets/bsnl.png';
+import '../styles/recharge.css';
 
 const Recharge = () => {
   const operators = [
-    { id: 1, name: 'Jio', logo: JioLogo, bgColor: '#FFF5F5' },
-    { id: 2, name: 'Airtel', logo: AirtelLogo, bgColor: '#F0F9F8' },
-    { id: 3, name: 'BSNL', logo: BsnlLogo, bgColor: '#F0F9FF' },
+    { id: 1, name: 'Jio', logo: JioLogo, bgColor: '#E3F2FD', color: '#1976D2' },
+    { id: 2, name: 'Airtel', logo: AirtelLogo, bgColor: '#FFEBEE', color: '#D32F2F' },
+    { id: 3, name: 'BSNL', logo: BsnlLogo, bgColor: '#FFF8E1', color: '#F57C00' },
   ];
 
   return (
