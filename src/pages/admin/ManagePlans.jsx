@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
-import JioLogo from '../../assets/Jio.png';
-import AirtelLogo from '../../assets/Airtel.png';
-import BsnlLogo from '../../assets/bsnl.png';
+// Use public folder for reliable deployment
+const JioLogo = '/images/Jio.png';
+const AirtelLogo = '/images/Airtel.png';
+const BsnlLogo = '/images/bsnl.png';
 import '../../styles/super-admin.css';
 
 const ManagePlans = () => {

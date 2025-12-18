@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import JioLogo from '../assets/Jio.png';
-import AirtelLogo from '../assets/Airtel.png';
-import BsnlLogo from '../assets/bsnl.png';
+// Use public folder for reliable deployment
+const JioLogo = '/images/Jio.png';
+const AirtelLogo = '/images/Airtel.png';
+const BsnlLogo = '/images/bsnl.png';
 import '../styles/recharge.css';
 
 const Recharge = () => {
