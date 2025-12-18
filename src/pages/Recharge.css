@@ -1,0 +1,155 @@
+/* Set background for the entire page */
+body {
+
+  background-color: rgb(209, 236, 246) !important;
+
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styling */
+.recharge-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Header section */
+.recharge-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.back-link {
+  display: inline-block;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.recharge-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Operators grid */
+.operators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Individual operator cards */
+.operator-card {
+  background: white; /* keep white for contrast */
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.operator-card:hover {
+  transform: translateY(-5px);
+}
+
+.operator-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.operator-info {
+  margin-bottom: 20px;
+}
+
+.operator-info h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.operator-info p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Button styling */
+.view-plans-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: rgb(241, 248, 248);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.view-plans-btn:hover {
+  transform: translateX(5px);
+}
+
+/* Support note section */
+.support-note {
+  text-align: center;
+  padding: 20px;
+  background: #fdf3e6; /* slightly lighter cream for contrast */
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.support-note p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.support-note a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.support-note a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recharge-header h1 {
+    font-size: 2rem;
+  }
+  
+  .operators-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .operator-card {
+    padding: 20px;
+  }
+}
